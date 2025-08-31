@@ -1,18 +1,21 @@
+
+
 import streamlit as st
 import pandas as pd
 import joblib
 import os
+from huggingface_hub import hf_hub_download # Import hf_hub_download
 
 # Load the trained model
 try:
     # Assuming the model is saved in the current directory or a known path
-    model_path = hf_hub_download(repo_id="pawanmall/Visit-with-us", filename="best_tourism_model_v1.joblib")
+    model_path = hf_hub_download(repo_id="pawanmall/Visit-with-us", filename="best_tourism_model_v1.joblib", repo_type="model")
     model = joblib.load(model_path)
 
     st.success("Model loaded successfully!")
 except Exception as e:
     st.error(f"Error loading model: {e}")
-    
+
 st.title("Wellness Tourism Package Purchase Prediction")
 
 st.write("Enter the customer details to predict the likelihood of purchasing the Wellness Tourism Package.")
